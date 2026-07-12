@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>School Digital News Board</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI,Arial,sans-serif;
+}
+
+body{
+
+background:#eef3f9;
+color:#222;
+
+display:flex;
+flex-direction:column;
+
+min-height:100vh;
+
+}
+
+header{
+
+background:#0d47a1;
+color:white;
+
+padding:20px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+box-shadow:0 4px 10px rgba(0,0,0,.2);
+
+}
+
+.schoolInfo{
+
+display:flex;
+align-items:center;
+gap:18px;
+
+}
+
+.schoolLogo{
+
+width:70px;
+height:70px;
+
+border-radius:50%;
+
+background:white;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:34px;
+
+}
+
+.schoolText h1{
+
+font-size:30px;
+
+}
+
+.schoolText p{
+
+font-size:15px;
+
+opacity:.9;
+
+}
+
+#clock{
+
+font-size:22px;
+
+font-weight:bold;
+
+text-align:right;
+
+}
+
+main{
+
+padding:25px;
+
+flex:1;
+
+}
+
+.sectionTitle{
+
+font-size:28px;
+
+margin-bottom:18px;
+
+color:#0d47a1;
+
+border-left:8px solid #0d47a1;
+
+padding-left:12px;
+
+}
+
+#newsContainer{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+
+gap:22px;
+
+}
+
+.newsCard{
+
+background:white;
+
+border-radius:14px;
+
+overflow:hidden;
+
+box-shadow:0 5px 16px rgba(0,0,0,.15);
+
+transition:.3s;
+
+display:flex;
+
+flex-direction:column;
+
+}
+
+.newsCard:hover{
+
+transform:translateY(-6px);
+
+}
+
+.newsImage{
+
+width:100%;
+
+height:220px;
+
+object-fit:cover;
+
+background:#ddd;
+
+}
+
+.newsContent{
+
+padding:18px;
+
+display:flex;
+
+flex-direction:column;
+
+gap:10px;
+
+}
+
+.newsTitle{
+
+font-size:24px;
+
+font-weight:bold;
+
+color:#0d47a1;
+
+}
+
+.newsDate{
+
+font-size:14px;
+
+color:#777;
+
+}
+
+.newsDescription{
+
+font-size:17px;
+
+line-height:1.6;
+
+}
+
+.category{
+
+display:inline-block;
+
+padding:6px 12px;
+
+border-radius:20px;
+
+background:#1565c0;
+
+color:white;
+
+font-size:13px;
+
+font-weight:bold;
+
+width:max-content;
+
+}
+  /* ---------- Announcements ---------- */
+
+#announcementSection{
+
+margin-top:40px;
+
+}
+
+#announcementBox{
+
+background:#fff8e1;
+
+border-left:8px solid #f9a825;
+
+border-radius:12px;
+
+padding:20px;
+
+box-shadow:0 4px 10px rgba(0,0,0,.12);
+
+}
+
+.announcementItem{
+
+padding:14px 0;
+
+border-bottom:1px solid #ddd;
+
+}
+
+.announcementItem:last-child{
+
+border-bottom:none;
+
+}
+
+.announcementTitle{
+
+font-size:20px;
+
+font-weight:bold;
+
+color:#d84315;
+
+margin-bottom:6px;
+
+}
+
+.announcementText{
+
+font-size:16px;
+
+line-height:1.6;
+
+}
+
+.announcementDate{
+
+font-size:13px;
+
+color:#666;
+
+margin-top:6px;
+
+}
+
+/* ---------- Footer Ticker ---------- */
+
+footer{
+
+background:#0d47a1;
+
+color:white;
+
+height:55px;
+
+display:flex;
+
+align-items:center;
+
+overflow:hidden;
+
+}
+
+#ticker{
+
+white-space:nowrap;
+
+display:inline-block;
+
+padding-left:100%;
+
+animation:tickerMove 30s linear infinite;
+
+font-size:20px;
+
+font-weight:bold;
+
+}
+
+@keyframes tickerMove{
+
+0%{
+
+transform:translateX(0);
+
+}
+
+100%{
+
+transform:translateX(-100%);
+
+}
+
+}
+
+/* ---------- Responsive ---------- */
+
+@media(max-width:900px){
+
+header{
+
+flex-direction:column;
+
+text-align:center;
+
+gap:15px;
+
+}
+
+.schoolInfo{
+
+flex-direction:column;
+
+}
+
+#clock{
+
+text-align:center;
+
+}
+
+.newsTitle{
+
+font-size:22px;
+
+}
+
+}
+
+@media(max-width:600px){
+
+main{
+
+padding:15px;
+
+}
+
+#newsContainer{
+
+grid-template-columns:1fr;
+
+}
+
+.newsImage{
+
+height:200px;
+
+}
+
+.sectionTitle{
+
+font-size:24px;
+
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="schoolInfo">
+
+<div class="schoolLogo">
+🏫
+</div>
+
+<div class="schoolText">
+
+<h1>Your School Name</h1>
+
+<p>Digital News Board</p>
+
+</div>
+
+</div>
+
+<div id="clock">
+Loading...
+</div>
+
+</header>
+
+<main>
+
+<h2 class="sectionTitle">
+Latest News
+</h2>
+
+<div id="newsContainer">
+</div>
+
+<section id="announcementSection">
+
+<h2 class="sectionTitle">
+Announcements
+</h2>
+
+<div id="announcementBox">
+</div>
+
+</section>
+
+</main>
+
+<footer>
+
+<div id="ticker">
+
+Loading latest updates...
+
+</div>
+
+</footer>
+
+<script>
+
+const newsContainer =
+document.getElementById("newsContainer");
+
+const announcementBox =
+document.getElementById("announcementBox");
+
+const ticker =
+document.getElementById("ticker");
+  async function loadNews() {
+
+    try {
+
+        const response = await fetch("news.json");
+        const data = await response.json();
+
+        newsContainer.innerHTML = "";
+        announcementBox.innerHTML = "";
+
+        // -------- NEWS --------
+        data.news.forEach(item => {
+
+            newsContainer.innerHTML += `
+
+            <div class="newsCard">
+
+                <img class="newsImage"
+                     src="${item.image}"
+                     alt="${item.title}"
+                     onerror="this.src='https://placehold.co/600x350?text=No+Image'">
+
+                <div class="newsContent">
+
+                    <span class="category">${item.category}</span>
+
+                    <div class="newsTitle">
+                        ${item.title}
+                    </div>
+
+                    <div class="newsDate">
+                        ${item.date}
+                    </div>
+
+                    <div class="newsDescription">
+                        ${item.description}
+                    </div>
+
+                </div>
+
+            </div>
+
+            `;
+
+        });
+
+        // -------- ANNOUNCEMENTS --------
+        data.announcements.forEach(item => {
+
+            announcementBox.innerHTML += `
+
+            <div class="announcementItem">
+
+                <div class="announcementTitle">
+                    ${item.title}
+                </div>
+
+                <div class="announcementText">
+                    ${item.text}
+                </div>
+
+                <div class="announcementDate">
+                    ${item.date}
+                </div>
+
+            </div>
+
+            `;
+
+        });
+
+        // -------- TICKER --------
+        ticker.textContent =
+            data.ticker.join("   ★   ");
+
+    }
+
+    catch(error){
+
+        newsContainer.innerHTML =
+        "<h2>Unable to load news.</h2>";
+
+        announcementBox.innerHTML =
+        "<p>Unable to load announcements.</p>";
+
+        ticker.textContent =
+        "Unable to load updates.";
+    }
+
+}
+
+function updateClock(){
+
+    const now = new Date();
+
+    document.getElementById("clock").innerHTML =
+        now.toLocaleDateString() +
+        "<br>" +
+        now.toLocaleTimeString();
+
+}
+
+loadNews();
+
+updateClock();
+
+setInterval(updateClock,1000);
+
+// Refresh news every minute
+setInterval(loadNews,60000);
+
+</script>
+
+</body>
+</html>
