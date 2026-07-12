@@ -1,0 +1,28 @@
+{
+  "date": "16 June 2026",
+
+  "international": [
+    "International Headline 1",
+    "International Headline 2"
+  ],
+
+  "national": [
+    "National Headline 1",
+    "National Headline 2"
+  ],
+
+  "state": [
+    "State Headline 1",
+    "State Headline 2"
+  ],
+
+  "district": [
+    "District Headline 1",
+    "District Headline 2"
+  ],
+
+  "sports": [
+    "Sports Headline 1",
+    "Sports Headline 2"
+  ]
+}
