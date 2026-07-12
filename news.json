@@ -1,0 +1,45 @@
+{
+  "news": [
+    {
+      "title": "Morning Assembly",
+      "date": "12 July 2026",
+      "category": "School",
+      "description": "Morning assembly will begin at 8:30 AM in the main ground. Students should assemble five minutes early.",
+      "image": "https://placehold.co/600x350?text=Morning+Assembly"
+    },
+    {
+      "title": "Science Exhibition",
+      "date": "15 July 2026",
+      "category": "Event",
+      "description": "Students from Classes 6 to 10 will present innovative science models in the auditorium.",
+      "image": "https://placehold.co/600x350?text=Science+Exhibition"
+    },
+    {
+      "title": "Sports Practice",
+      "date": "18 July 2026",
+      "category": "Sports",
+      "description": "Football, basketball and athletics practice will be held after school from 4:00 PM.",
+      "image": "https://placehold.co/600x350?text=Sports"
+    }
+  ],
+
+  "announcements": [
+    {
+      "title": "PTM",
+      "text": "Parent-Teacher Meeting will be held on Saturday in the school auditorium.",
+      "date": "19 July 2026"
+    },
+    {
+      "title": "Library",
+      "text": "Students are requested to return all overdue library books before Friday.",
+      "date": "16 July 2026"
+    }
+  ],
+
+  "ticker": [
+    "Welcome to the School Digital News Board",
+    "Science Exhibition on 15 July",
+    "PTM on Saturday",
+    "Have a wonderful day!"
+  ]
+}
