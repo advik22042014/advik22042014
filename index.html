@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Today's Headlines by Advik 7B</title>
+
+<style>
+
+body{
+    margin:0;
+    padding:20px;
+    min-height:100vh;
+    font-family:Segoe UI,Arial,sans-serif;
+
+    background:
+    linear-gradient(
+    135deg,
+    #050510,
+    #0b1f4d,
+    #34124d);
+
+    color:white;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+}
+
+h1{
+    text-align:center;
+    color:#ff69b4;
+    margin-bottom:10px;
+}
+
+.date{
+    text-align:center;
+    font-size:22px;
+    color:#ffd1e8;
+    margin-bottom:25px;
+}
+
+.card{
+    background:rgba(255,255,255,0.08);
+    border-radius:16px;
+    padding:15px;
+    margin-bottom:18px;
+    backdrop-filter:blur(6px);
+}
+
+.card h2{
+    margin-top:0;
+    color:#d78cff;
+    border-left:5px solid #ff69b4;
+    padding-left:10px;
+}
+
+li{
+    margin:10px 0;
+    line-height:1.5;
+}
+
+.refresh{
+    display:block;
+    margin:20px auto;
+    padding:12px 24px;
+    border:none;
+    border-radius:12px;
+    background:#ff4fa3;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.refresh:hover{
+    opacity:0.9;
+}
+
+.footer{
+    text-align:center;
+    margin-top:25px;
+    color:#bbb;
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>Today's Headlines by Advik 7B</h1>
+
+<div id="date" class="date">
+Loading...
+</div>
+
+<div class="card">
+<h2>International News</h2>
+<ol id="international"></ol>
+</div>
+
+<div class="card">
+<h2>National News</h2>
+<ol id="national"></ol>
+</div>
+
+<div class="card">
+<h2>State News</h2>
+<ol id="state"></ol>
+</div>
+
+<div class="card">
+<h2>District News</h2>
+<ol id="district"></ol>
+</div>
+
+<div class="card">
+<h2>Sports News</h2>
+<ol id="sports"></ol>
+</div>
+
+<button class="refresh" onclick="loadNews()">
+Refresh News
+</button>
+
+<div class="footer">
+Updated from GitHub JSON
+</div>
+
+</div>
+
+<script>
+
+async function loadNews(){
+
+try{
+
+const response = await fetch(
+'news.json?t=' + new Date().getTime()
+);
+
+const data = await response.json();
+
+document.getElementById("date").innerHTML =
+"<b>Date:</b> " + data.date;
+
+fillList(
+"international",
+data.international
+);
+
+fillList(
+"national",
+data.national
+);
+
+fillList(
+"state",
+data.state
+);
+
+fillList(
+"district",
+data.district
+);
+
+fillList(
+"sports",
+data.sports
+);
+
+}
+
+catch(error){
+
+document.getElementById("date").innerHTML =
+"Unable to load news.";
+
+console.error(error);
+
+}
+
+}
+
+function fillList(id, items){
+
+const list =
+document.getElementById(id);
+
+list.innerHTML = "";
+
+items.forEach(item=>{
+
+const li =
+document.createElement("li");
+
+li.textContent = item;
+
+list.appendChild(li);
+
+});
+
+}
+
+loadNews();
+
+</script>
+
+</body>
+</html>
